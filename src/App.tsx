@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import { Stream } from "./store/AppStore";
-import { MainView } from "./components/MainView";
 
 interface Props {
-  state: Stream;
+  stream: Stream;
+  view: string | React.FunctionComponent<any> | React.ComponentClass<any, any>;
 }
 
 export const App = (props: Props) => {
-  const [state, setState] = useState(props.state());
-  useEffect(() => props.state.map((stream: Stream) => setState(stream)));
-  return < MainView {...state} />;
+  const [state, setState] = useState(props.stream());
+  useEffect(() => props.stream.map((stream: Stream) => setState(stream)));
+  return React.createElement(props.view, state);
 }
