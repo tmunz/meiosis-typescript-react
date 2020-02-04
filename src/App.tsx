@@ -1,26 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import { Stream, AppState } from "./store/AppStore";
+import { Stream } from "./store/AppStore";
 import { MainView } from "./components/MainView";
 
 interface Props {
   state: Stream;
 }
 
-export class App extends React.Component<Props, AppState>  {
-
-  constructor(props: Props) {
-    super(props);
-    this.state = props.state();
-  }
-
-  componentDidMount() {
-    this.props.state.map((stream: Stream) => {
-      this.setState(stream);
-    });
-  }
-
-  render() {
-    return < MainView {...this.state } />
-  }
+export const App = (props: Props) => {
+  const [state, setState] = useState(props.state());
+  useEffect(() => props.state.map((stream: Stream) => setState(stream)));
+  return < MainView {...state} />;
 }
