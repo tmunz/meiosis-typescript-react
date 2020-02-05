@@ -1,6 +1,7 @@
 import React from "react";
-import { ConditionsTweaker } from "./ConditionsTweaker";
-import { TemperatureTweaker } from "./TemperatureTweaker";
+import { ConditionsEditor } from "./ConditionsEditor";
+import { TemperatureEditor } from "./TemperatureEditor";
+import { HistoryEditor } from "./HistoryEditor";
 
 
 interface Props {
@@ -14,23 +15,24 @@ export class MainView extends React.Component<Props> {
   render() {
     return (
       <div>
-        <ConditionsTweaker
+        <HistoryEditor />
+        <ConditionsEditor
           conditions={this.props.conditions}
           id="conditions"
         />
-        <TemperatureTweaker
+        <TemperatureEditor
           temperature={this.props.temperatureAir}
           id="temperatureAir"
         />
-        <TemperatureTweaker
+        <TemperatureEditor
           temperature={this.props.temperatureWater}
           id="temperatureWater"
         />
-        <pre>{JSON.stringify({
-          conditions: this.props.conditions,
-          temperaturAir: this.props.temperatureAir,
-          temperatureWater: this.props.temperatureWater,
-        }, null, 4)}</pre>
+        <div>
+          <h2>AppState</h2>
+          <pre>{JSON.stringify(this.props, null, 4)}
+          </pre>
+        </div>
       </div>
     );
   }

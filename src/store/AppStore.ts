@@ -16,7 +16,7 @@ export class AppStore extends Store<AppState> {
   private static initialState: AppState = {
     conditions: {
       precipitations: false,
-      sky: "Sunny"
+      sky: "SUNNY"
     },
     temperatureAir: {
       label: "air",

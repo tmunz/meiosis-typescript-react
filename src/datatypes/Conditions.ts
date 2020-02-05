@@ -1,4 +1,4 @@
 export interface Conditions {
   precipitations: boolean;
-  sky: string;
+  sky: "SUNNY" | "CLOUDY" | "MIX";
 }

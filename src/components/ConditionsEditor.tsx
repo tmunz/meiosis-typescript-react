@@ -9,7 +9,7 @@ export interface Props {
   conditions: Conditions;
 }
 
-export class ConditionsTweaker extends React.Component<Props> {
+export class ConditionsEditor extends React.Component<Props> {
 
   render() {
     return (

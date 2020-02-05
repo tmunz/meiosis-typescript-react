@@ -9,7 +9,7 @@ export interface Props {
   temperature: any;
 }
 
-export class TemperatureTweaker extends React.Component<Props> {
+export class TemperatureEditor extends React.Component<Props> {
   render() {
     return (
       <div>
