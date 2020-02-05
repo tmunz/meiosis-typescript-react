@@ -9,6 +9,6 @@ interface Props {
 
 export const App = (props: Props) => {
   const [state, setState] = useState(props.stream());
-  useEffect(() => props.stream.map((stream: Stream) => setState(stream)));
+  useEffect(() => props.stream.map(appState => setState(appState)));
   return React.createElement(props.view, state);
 }

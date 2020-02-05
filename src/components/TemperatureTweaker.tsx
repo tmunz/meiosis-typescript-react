@@ -1,6 +1,7 @@
 import React from "react";
 
 import { changeUnits, increment } from "../store/actions/TemperatureActions";
+import { appStore } from "../store/AppStore";
 
 
 export interface Props {
@@ -15,15 +16,15 @@ export class TemperatureTweaker extends React.Component<Props> {
         {this.props.temperature.label} Temperature:
         {this.props.temperature.value} &deg; {this.props.temperature.units}
         <div>
-          <button onClick={() => increment(this.props.id, 1)}>
+          <button onClick={() => increment([appStore], this.props.id, 1)}>
             Increment
           </button>
-          <button onClick={() => increment(this.props.id, -1)}>
+          <button onClick={() => increment([appStore], this.props.id, -1)}>
             Decrement
           </button>
         </div>
         <div>
-          <button onClick={() => changeUnits(this.props.id)}>
+          <button onClick={() => changeUnits([appStore], this.props.id)}>
             Change Units
           </button>
         </div>

@@ -1,6 +1,6 @@
 export class ObjectUtils {
 
-  static merge<T>(source: T, ...patches: any[]): T {
+  static merge<T, V>(source: T, ...patches: V[]): T {
     const isArray = Array.isArray(source);
     const copy = isArray ? [...(source as unknown as any[])] : { ...source }
     return ObjectUtils.apply(isArray, copy, patches)

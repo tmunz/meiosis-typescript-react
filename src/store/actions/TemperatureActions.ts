@@ -1,11 +1,13 @@
-import { appStore } from "../AppStore";
+import { Store } from "../Store";
 
-export const increment = (id: string, amount: number) => {
-  appStore.update({ [id]: { value: (x: number) => x + amount } });
+// these actions could update different stores
+
+export const increment = (stores: Store<any>[], id: string, amount: number) => {
+  stores.forEach(store => store.update({ [id]: { value: (x: number) => x + amount } }));
 };
 
-export const changeUnits = (id: string) => {
-  appStore.update({
+export const changeUnits = (stores: Store<any>[], id: string) => {
+  stores.forEach(store => store.update({
     [id]: (state: { value: number; units: string; }) => {
       var value = state.value;
       var newUnits = state.units === "C" ? "F" : "C";
@@ -14,7 +16,7 @@ export const changeUnits = (id: string) => {
       state.units = newUnits;
       return state;
     }
-  })
+  }));
 }
 
 const convert = (value: number, to: string): number => {

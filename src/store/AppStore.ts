@@ -1,10 +1,6 @@
-// @ts-ignore // TODO connect typing
-import flyd, { Stream as FlydStream } from "flyd";
 import { Conditions } from "../datatypes/Conditions";
 import { Temperature } from "../datatypes/Temperature";
-import { ObjectUtils } from "../ObjectUtils";
-
-export type Stream = FlydStream<{ state: AppState }>;
+import { Store, Stream as AbstractStream } from "./Store";
 
 export interface AppState {
   conditions: Conditions;
@@ -12,14 +8,12 @@ export interface AppState {
   temperatureWater: Temperature;
 }
 
-export class AppStore {
+export type Stream = AbstractStream<AppState>;
 
-  private static _instance: AppStore;
 
-  private _update: Stream;
-  private _state: Stream;
-  
-  private initialState: AppState = {
+export class AppStore extends Store<AppState> {
+
+  private static initialState: AppState = {
     conditions: {
       precipitations: false,
       sky: "Sunny"
@@ -35,19 +29,12 @@ export class AppStore {
       units: "C"
     },
   };
-
-  get update() {
-    return this._update;
-  }
-
-  get state() {
-    return this._state;
-  }
-
+  
   private constructor() {
-    this._update = flyd.stream();
-    this._state = flyd.scan(ObjectUtils.merge, this.initialState, this.update);
+    super(AppStore.initialState);
   }
+
+  private static _instance: AppStore;
 
   static get instance(): AppStore {
     if (!AppStore._instance) {

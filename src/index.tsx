@@ -6,6 +6,6 @@ import { appStore } from "./store/AppStore";
 import { MainView } from "./components/MainView";
 
 render(
-  React.createElement(App, { stream: appStore.state, view: MainView }),
+  <App stream={appStore.state} view={MainView} />,
   document.getElementById("app")
 );
