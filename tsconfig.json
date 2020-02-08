@@ -12,6 +12,6 @@
     "declarationDir": "dist/types",
     "declaration": true,
     "skipLibCheck": true,
-    "types": ["./node_modules/flyd"]
+    "moduleResolution": "node"
   }
 }
